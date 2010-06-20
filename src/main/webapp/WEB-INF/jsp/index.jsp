@@ -20,24 +20,44 @@
 	function simpleAjaxTest() {
 		AjaxTestService.getServiceName(function(data) {
 			$('#ajaxDiv').html(data);
+			$('#ajaxDiv').addClass('notice');
 		});
-	}	
+	}
+
+	function showHibernateTest(viewName) {
+		AjaxTestService.showHibernateTest(viewName, applyAjaxResults);
+	}
+	
+	function showMultiplicationTable(number) {
+		AjaxTestService.showMultiplicationTable(number, applyAjaxResults);
+	}
+
+	function saveName() {
+		var name = $('#name').val();
+		if(name) {
+			AjaxTestService.storeName(name, applyAjaxResults);
+		}
+	}
+
+	function removeName() {
+		AjaxTestService.removeName(applyAjaxResults);
+	}		
 </script>
 </head>
 <body>
-<div class="container showgrid">
+<div class="container">
 	<div class="span-24 last" id="header">
-		<div class="span-4" id="headerleft">
+		<div class="span-6" id="headerleft">
 			<img src="<c:url value='images/sahalogo.png'/>" height=80 width=75/>&nbsp;
 		</div>
-		<div class="span-20 last" id="headerright">
+		<div class="span-18 last" id="headerright">
 			<h1>SAHA Test Webapp</h1>
 		</div>	
 	</div>
-	<div class="span-4" id="left">
+	<div class="span-6" id="left">
 		<jsp:include page="leftMenu.jsp"></jsp:include>
 	</div>
-	<div class="span-20 last" id="content">
+	<div class="span-18 last" id="content">
 		<jsp:include page="indexMain.jsp"></jsp:include>
 	</div>
 </div>

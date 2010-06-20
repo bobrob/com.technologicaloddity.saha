@@ -35,6 +35,20 @@ public class AjaxTestService extends AjaxService {
 	private MetadataDao metadataDao;
 	
 	@RemoteMethod
+	public Map<String,String> showHibernateTest(String viewName) {
+		Map<String,String> result = new HashMap<String,String>();
+		try {
+			Metadata nameMetadata = metadataDao.getNameMetadata();
+			ModelAndView modelAndView = new ModelAndView(viewName);
+			modelAndView.addObject("nameMetadata", nameMetadata);
+			result.put("content", render(modelAndView));
+		} catch(Exception e) {
+			result.put("content", "Rendering error:" + e.getMessage());
+		}
+		return result;
+	}
+	
+	@RemoteMethod
 	public Map<String,String> showContentPage(String viewName) {
 		Map<String,String> result = new HashMap<String,String>();
 		try {
