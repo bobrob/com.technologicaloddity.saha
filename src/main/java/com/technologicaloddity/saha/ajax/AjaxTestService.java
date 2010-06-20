@@ -35,6 +35,18 @@ public class AjaxTestService extends AjaxService {
 	private MetadataDao metadataDao;
 	
 	@RemoteMethod
+	public Map<String,String> showContentPage(String viewName) {
+		Map<String,String> result = new HashMap<String,String>();
+		try {
+			ModelAndView modelAndView = new ModelAndView(viewName);
+			result.put("content", render(modelAndView));
+		} catch(Exception e) {
+			result.put("content", "Could not render page:" + e.getMessage());
+		}
+		return result;
+	}
+	
+	@RemoteMethod
 	public Map<String,String> removeName() {
 		Map<String,String> result = new HashMap<String,String>();
 		
